@@ -495,6 +495,10 @@ impl<'a, 'tcx> Builder<'a, 'tcx> {
                 block.unit()
             }
 
+            ExprKind::Become { .. } => {
+                bug!("expr_into_dest not yet implemented for `become`."); // FIXME(explicit_tail_calls)
+            }
+
             // Avoid creating a temporary
             ExprKind::VarRef { .. }
             | ExprKind::UpvarRef { .. }

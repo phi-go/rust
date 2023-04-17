@@ -600,6 +600,10 @@ pub fn check_crate(krate: &ast::Crate, sess: &Session) {
     gate_all!(inline_const_pat, "inline-const in pattern position is experimental");
     gate_all!(associated_const_equality, "associated const equality is incomplete");
     gate_all!(yeet_expr, "`do yeet` expression is experimental");
+    gate_all!(
+        explicit_tail_calls,
+        "explicit tails calls using the `become` keyword is experimental"
+    );
     gate_all!(dyn_star, "`dyn*` trait objects are experimental");
     gate_all!(const_closures, "const closures are experimental");
 

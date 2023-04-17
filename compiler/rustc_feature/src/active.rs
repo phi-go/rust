@@ -389,6 +389,8 @@ declare_features! (
     (active, exclusive_range_pattern, "1.11.0", Some(37854), None),
     /// Allows exhaustive pattern matching on types that contain uninhabited types.
     (active, exhaustive_patterns, "1.13.0", Some(51085), None),
+    /// Allows guaranteeing tail call elimination using the `become` keyword.
+    (active, explicit_tail_calls, "1.70.0", Some(66666), None), // FIXME(explicit_tail_calls)
     /// Allows using `efiapi`, `sysv64` and `win64` as calling convention
     /// for functions with varargs.
     (active, extended_varargs_abi_support, "1.65.0", Some(100189), None),

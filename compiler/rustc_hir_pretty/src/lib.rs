@@ -1080,9 +1080,10 @@ impl<'a> State<'a> {
     // parses as the erroneous construct `if (return {})`, not `if (return) {}`.
     fn cond_needs_par(expr: &hir::Expr<'_>) -> bool {
         match expr.kind {
-            hir::ExprKind::Break(..) | hir::ExprKind::Closure { .. } | hir::ExprKind::Ret(..) => {
-                true
-            }
+            hir::ExprKind::Break(..)
+            | hir::ExprKind::Closure { .. }
+            | hir::ExprKind::Ret(..)
+            | hir::ExprKind::Become(..) => true,
             _ => contains_exterior_struct_lit(expr),
         }
     }
@@ -1546,6 +1547,11 @@ impl<'a> State<'a> {
                     self.word(" ");
                     self.print_expr_maybe_paren(expr, parser::PREC_JUMP);
                 }
+            }
+            hir::ExprKind::Become(expr) => {
+                self.word("become");
+                self.word(" ");
+                self.print_expr_maybe_paren(expr, parser::PREC_JUMP);
             }
             hir::ExprKind::InlineAsm(asm) => {
                 self.word("asm!");

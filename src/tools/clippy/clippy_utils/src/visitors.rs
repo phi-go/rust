@@ -648,6 +648,10 @@ pub fn for_each_unconsumed_temporary<'tcx, B>(
                 helper(typeck, consume, e, f)?;
             },
 
+            ExprKind::Become(_expr) => {
+                panic!("Become is not yet implemented in for_each_unconsumed_temporary."); // FIXME(explicit_tail_calls)
+            }
+
             // Either drops temporaries, jumps out of the current expression, or has no sub expression.
             ExprKind::DropTemps(_)
             | ExprKind::Ret(_)
